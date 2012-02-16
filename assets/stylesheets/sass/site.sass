@@ -1,0 +1,110 @@
+// Compass imports & mixins
+@import "compass"
+@import "compass/reset"
+@import "compass/layout/grid-background"
+
+// Variables.
+$font-color: #f0f0f0   // White
+$link-color: #a14b3f // Dark red
+$font-family: 'Abel', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, sans-serif
+$alt-font: 'Leckerli One', cursive, $font-family
+
+// Grid dimensions.
+$grid-width: 960px
+$column-width: 40px
+$gutter-width: 20px
+
+$sec-column-width: 20px
+$sec-gutter-width: 10px
+
+$show-baseline-grid-backgrounds: false // Toggle baselines visibility.
+$grid-background-baseline-height: 1em
+$grid-background-total-columns: 16
+$grid-background-column-width: $column-width
+$grid-background-gutter-width: $gutter-width
+$grid-background-offset: $gutter-width / 2
+$grid-background-column-color: rgba(255, 0, 0, .08)
+$grid-background-baseline-color: rgba(0, 0, 0, .8)
+
+// Mixin
+@mixin data-uri-bg($image, $properties: false)
+  @if $properties != false
+    background: inline-image($image) $properties
+    *background: url($image) $properties
+  @else
+    background: inline-image($image)
+    *background: url($image)
+
+body
+  font-family: $font-family
+  font-size: 100%
+  color: $font-color
+  background: url("../images/bg_title.jpg") top center no-repeat, url("../images/bg_stars.jpg")
+
+#wrap
+  max-width: $grid-width - $gutter-width
+  min-height: 100%
+  margin: 0 auto
+  padding: 0 halve-gutter()
+  //+grid-background
+
+#mainheader
+  padding: 50px 0
+  text-align: center
+
+  h1
+    width: 721px
+    display: inline-block
+    margin-bottom: 30px
+    position: relative
+    font-size: 6.25em // 100px
+    +text-shadow(rgba(0, 0, 0, 0.5) 1px 1px 1px)
+
+    .earth
+      color: $link-color
+
+    #shadow1,
+    #shadow2
+      top: -4px
+      left: 0
+      position: absolute
+      opacity: 0.3
+      z-index: -1
+
+    #shadow2
+      top: 4px
+      left: 2px
+
+  h2
+    font-family: $alt-font
+    font-size: 1.25em
+    font-weight: normal
+    letter-spacing: 0.05em
+    +text-shadow(rgba(0, 0, 0, 0.5) 1px 1px 1px)
+
+#intro
+  padding: 30px 200px
+  font-size: 1.3125em
+  line-height: 1.3333em
+  text-align: center
+  letter-spacing: 0.03em
+
+  span
+    font-size: 1.9048em
+    color: $link-color
+
+#mainfooter
+  height: 282px
+  position: relative
+  padding-top: 310px
+  margin-top: -215px
+  background:  url("../images/asteroid.png") -100px top no-repeat, url("../images/earth_footer.jpg") bottom center no-repeat
+
+  #nasa
+    width: 200px
+    position: absolute
+    bottom: 0
+    right: 0
+    padding-bottom: 65px
+    text-align: center
+    +data-uri-bg("nasa.png", center bottom no-repeat)
